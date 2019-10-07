@@ -27,17 +27,36 @@ package com.fireball1725.devworld2.client.events;
 import com.fireball1725.devworld2.util.DevWorldUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.MainMenuScreen;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class EventsMainMenu {
+  private Button buttonDelete;
+  private int keyShiftCount = 0;
+
   @SubscribeEvent
   public void onScreenDraw(GuiScreenEvent.DrawScreenEvent.Post event) {
     if (event.getGui() instanceof MainMenuScreen) {
       int textY = event.getGui().height / 4 + 38;
       int textX = event.getGui().width / 2 + 146;
       event.getGui().drawCenteredString(Minecraft.getInstance().fontRenderer, "DevWorld 2", textX, textY, 0xFFFFFF);
+
+      if (buttonDelete.isHovered() && !buttonDelete.active) {
+        event.getGui().renderTooltip("Press [Shift] 2 times to enable delete", event.getMouseX(), event.getMouseY());
+      }
+    }
+  }
+
+  @SubscribeEvent
+  public void onKeyPress(GuiScreenEvent.KeyboardKeyPressedEvent.Post event) {
+    if (event.getGui() instanceof MainMenuScreen) {
+      if (event.getKeyCode() == 340)
+        keyShiftCount ++;
+
+      if (keyShiftCount >= 2)
+        buttonDelete.active = true;
     }
   }
 
@@ -60,9 +79,12 @@ public class EventsMainMenu {
         buttonX += 44;
 
         // Delete World Button
-        event.addWidget(new Button(buttonX, buttonY, 40, 20, "Delete", (p_214318_1_) -> {
+        buttonDelete = new Button(buttonX, buttonY, 40, 20, "Delete", (p_214318_1_) -> {
           DevWorldUtils.deleteDevWorld();
-        }));
+        });
+        buttonDelete.active = false;
+        keyShiftCount = 0;
+        event.addWidget(buttonDelete);
       }
     }
   }

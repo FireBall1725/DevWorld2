@@ -4,11 +4,9 @@ issueTrackerURL="https://github.com/FireBall1725/DevWorld2/issues"
 
 [[mods]]
 modId="devworld2"
-version="0.2.0"
+version="{{version}}"
 displayName="DevWorld 2"
 displayURL="https://github.com/FireBall1725/DevWorld2"
-logoFile=""
-credits=""
 authors="FireBall1725"
 description="DevWorld2 is a simple mod used to create a flat world with pre-defined settings for the world to quickly create a world for testing a mod that you are developing."
 
