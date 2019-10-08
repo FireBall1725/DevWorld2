@@ -24,7 +24,7 @@
 
 apply plugin: 'com.jfrog.artifactory'
 
-def artifcatoryPassword = System.getenv("ARTIFACTORY_PASSWORD") ?: "InvalidP@ssword"
+def artifactoryPassword = System.getenv("ARTIFACTORY_PASSWORD") ?: "InvalidP@ssword"
 
 artifactory {
     publish {
