@@ -27,21 +27,11 @@ repositories {
     mavenCentral()
 
     maven {
-        name "FireBall API Depot"
-        url "http://dl.tsr.me/artifactory/libs-release"
-    }
-
-    maven {
-        name = "Progwml6 maven"
-        url = "https://dvs1.progwml6.com/files/maven/"
-    }
-
-    maven {
-        name = "ModMaven"
-        url = "https://modmaven.k-4u.nl"
+        name "FireBall1725 maven"
+        url "https://repo.erins.net/maven"
     }
 }
 
 dependencies {
-    runtimeOnly fg.deobf("mezz.jei:jei-1.14.4:6.0.0.10")
+    //runtimeOnly fg.deobf("mezz.jei:jei-1.14.4:6.0.0.10")
 }

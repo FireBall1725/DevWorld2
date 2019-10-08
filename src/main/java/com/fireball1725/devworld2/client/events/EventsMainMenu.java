@@ -33,6 +33,8 @@ import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class EventsMainMenu {
+  private Button buttonCreate;
+  private Button buttonLoad;
   private Button buttonDelete;
   private int keyShiftCount = 0;
 
@@ -44,7 +46,17 @@ public class EventsMainMenu {
       event.getGui().drawCenteredString(Minecraft.getInstance().fontRenderer, "DevWorld 2", textX, textY, 0xFFFFFF);
 
       if (buttonDelete.isHovered() && !buttonDelete.active) {
-        event.getGui().renderTooltip("Press [Shift] 2 times to enable delete", event.getMouseX(), event.getMouseY());
+        event.getGui().renderTooltip("Press [Left Shift] 2 times to enable delete", event.getMouseX(), event.getMouseY());
+      }
+
+      if (!DevWorldUtils.saveExist()) {
+        buttonCreate.visible = true;
+        buttonLoad.visible = false;
+        buttonDelete.visible = false;
+      } else {
+        buttonCreate.visible = false;
+        buttonLoad.visible = true;
+        buttonDelete.visible = true;
       }
     }
   }
@@ -66,26 +78,28 @@ public class EventsMainMenu {
       int buttonY = event.getGui().height / 4 + 48;
       int buttonX = event.getGui().width / 2 + 104;
 
-      if (!DevWorldUtils.saveExist()) {
-        // New World Button
-        event.addWidget(new Button(buttonX, buttonY, 84, 20, "New DevWorld", (p_214318_1_) -> {
-          DevWorldUtils.createDevWorld();
-        }));
-      } else {
-        // Load World Button
-        event.addWidget(new Button(buttonX, buttonY, 40, 20, "Load", (p_214318_1_) -> {
-          DevWorldUtils.loadDevWorld();
-        }));
-        buttonX += 44;
-
-        // Delete World Button
-        buttonDelete = new Button(buttonX, buttonY, 40, 20, "Delete", (p_214318_1_) -> {
-          DevWorldUtils.deleteDevWorld();
-        });
-        buttonDelete.active = false;
+      buttonCreate = new Button(buttonX, buttonY, 84, 20, "New DevWorld", (p_214318_1_) -> {
+        DevWorldUtils.createDevWorld();
+      });
+      buttonLoad = new Button(buttonX, buttonY, 40, 20, "Load", (p_214318_1_) -> {
+        DevWorldUtils.loadDevWorld();
+      });
+      buttonX += 44;
+      buttonDelete = new Button(buttonX, buttonY, 40, 20, "Delete", (p_214318_1_) -> {
+        DevWorldUtils.deleteDevWorld();
         keyShiftCount = 0;
-        event.addWidget(buttonDelete);
-      }
+      });
+
+      buttonCreate.visible = false;
+      buttonLoad.visible = false;
+      buttonDelete.visible = false;
+      buttonDelete.active = false;
+
+      keyShiftCount = 0;
+
+      event.addWidget(buttonCreate);
+      event.addWidget(buttonLoad);
+      event.addWidget(buttonDelete);
     }
   }
 }

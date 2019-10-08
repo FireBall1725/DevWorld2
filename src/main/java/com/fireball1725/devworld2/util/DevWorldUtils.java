@@ -106,7 +106,6 @@ public class DevWorldUtils {
   public static void deleteDevWorld() {
     SaveFormat saveFormat = Minecraft.getInstance().getSaveLoader();
     saveFormat.deleteWorldDirectory(worldName);
-    Minecraft.getInstance().displayGuiScreen(null);
   }
 
   // Check to see if the Save Exists
