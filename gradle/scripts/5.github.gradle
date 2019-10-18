@@ -35,7 +35,7 @@ publishing {
             url = uri("https://maven.pkg.github.com/fireball1725/DevWorld2")
             credentials {
                 //findProperty will allow these properties to be absent and still run the build, just won't publish
-                username = "SeanLatimer"
+                username = "FireBall1725"
                 password = System.getenv("GITHUB_TOKEN") ?: "InvalidP@ssword"
             }
         }
