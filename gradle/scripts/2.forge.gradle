@@ -1,4 +1,4 @@
-group = "ca.fireball1725.${project_name}"
+group = "ca.fireball1725.mods"
 archivesBaseName = "${project.name}"
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
