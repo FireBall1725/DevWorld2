@@ -1,0 +1,51 @@
+apply plugin: "com.github.breadmoirai.github-release"
+
+String readChangelogString(String filePath) {
+    File file = new File(filePath)
+    if(file.exists()) {
+        return file.text
+    }
+
+    return ""
+}
+
+githubRelease {
+    token System.getenv("GITHUB_TOKEN") ?: "InvalidP@ssword"
+    owner System.getenv("CIRCLE_PROJECT_USERNAME") ?: ""
+    repo System.getenv("CIRCLE_PROJECT_REPONAME") ?: ""
+    targetCommitish = System.getenv("CIRCLE_SHA1") ?: ""
+    body {
+        return readChangelogString("CHANGELOG.md").replace('\n', '\n* ')
+    }
+    releaseAssets jar.destinationDir.listFiles()
+    overwrite true
+}
+
+
+def reobfFile = file("$buildDir/reobfJar/output.jar")
+def reobfArtifact = artifacts.add('default', reobfFile) {
+    type 'jar'
+    builtBy 'reobfJar'
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "Github"
+            url = uri("https://maven.pkg.github.com/fireball1725/DevWorld2")
+            credentials {
+                //findProperty will allow these properties to be absent and still run the build, just won't publish
+                username = "SeanLatimer"
+                password = System.getenv("GITHUB_TOKEN") ?: "InvalidP@ssword"
+            }
+        }
+    }
+    publications {
+        github(MavenPublication) {
+            artifact reobfArtifact
+            pom {
+                url.set("https://github.com/fireball1725/DevWorld2.git")
+            }
+        }
+    }
+}

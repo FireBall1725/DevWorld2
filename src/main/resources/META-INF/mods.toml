@@ -4,7 +4,7 @@ issueTrackerURL="https://github.com/FireBall1725/DevWorld2/issues"
 
 [[mods]]
 modId="devworld2"
-version="{{version}}"
+version="${file.jarVersion}"
 displayName="DevWorld 2"
 displayURL="https://github.com/FireBall1725/DevWorld2"
 authors="FireBall1725"

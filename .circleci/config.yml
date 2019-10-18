@@ -20,7 +20,7 @@ jobs:
     steps:
       - checkout
 
-      - run: ./gradlew build jar curseforge artifactorypublish
+      # - run: ./gradlew build jar curseforge artifactorypublish
 
       - store_artifacts:
           path: build/libs

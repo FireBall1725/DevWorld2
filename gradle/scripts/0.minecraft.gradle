@@ -1,0 +1,28 @@
+apply plugin: 'eclipse'
+apply plugin: 'net.minecraftforge.gradle'
+
+minecraft {
+    mappings channel: "${mcp_channel}", version: "${mcp_version}"
+
+    runs {
+        client = {
+            properties 'forge.logging.markers': 'SCAN,REGISTRIES,REGISTRYDUMP'
+            properties 'forge.logging.console.level': 'debug'
+            workingDirectory project.file('run').canonicalPath
+            source sourceSets.main
+        }
+        server = {
+            properties 'forge.logging.markers': 'SCAN,REGISTRIES,REGISTRYDUMP'
+            properties 'forge.logging.console.level': 'debug'
+            workingDirectory project.file('run').canonicalPath
+            source sourceSets.main
+        }
+        data = {
+            workingDirectory project.file('run').canonicalPath
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+            args '--mod', 'rftoolsutility', '--all', '--output', file('src/generated/resources/')
+            source sourceSets.main
+        }
+    }
+}

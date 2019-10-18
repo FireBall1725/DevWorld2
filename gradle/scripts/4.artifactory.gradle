@@ -1,0 +1,35 @@
+apply plugin: 'com.jfrog.artifactory'
+apply plugin: 'maven-publish'
+
+def reobfFile = file("$buildDir/reobfJar/output.jar")
+def reobfArtifact = artifacts.add('default', reobfFile) {
+    type 'jar'
+    builtBy 'reobfJar'
+}
+publishing {
+    publications {
+        artifactory(MavenPublication) {
+            artifact reobfArtifact
+        }
+    }
+}
+
+def artifactoryPassword = System.getenv("ARTIFACTORY_PASSWORD") ?: "InvalidP@ssword"
+
+artifactory {
+    publish {
+        contextUrl = 'https://repo.erins.net/artifactory'
+        repository {
+            repoKey = "maven"
+            username = "fireball1725"
+            password = artifactoryPassword
+            maven = true
+        }
+        defaults {
+            publications('artifactory')
+        }
+        publishBuildInfo = true
+        publishArtifacts = true
+        publishPom = true
+    }
+}
