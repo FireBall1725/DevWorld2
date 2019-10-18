@@ -65,7 +65,7 @@ jobs:
           name: "Publish Release"
           command: |
             export CI_VERSION=`cat CI_VERSION`
-            ./gradlew build generateChangelog
+            ./gradlew build
             ./gradlew githubRelease publishGithubPublicationToGithubRepository # artifactorypublish curseforge
 workflows:
   version: 2

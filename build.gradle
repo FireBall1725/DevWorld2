@@ -10,7 +10,6 @@ buildscript {
         classpath group: 'org.jfrog.buildinfo', name: 'build-info-extractor-gradle', version: '4.6.+'
         classpath group: 'gradle.plugin.com.matthewprenger', name: 'CurseGradle', version: '1.4.+'
         classpath group: 'gradle.plugin.com.github.breadmoirai', name: 'github-release', version: '2.2.+'
-        classpath group: 'com.selesse', name:'gradle-git-changelog', version: '0.2.+'
     }
 }
 fileTree('gradle/scripts').include ('*.gradle').collect().sort().each { apply from: it }
