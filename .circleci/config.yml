@@ -85,7 +85,7 @@ jobs:
           name: "Publish to Artifactory"
           command: |
             export CI_VERSION=`cat CI_VERSION`
-            ./gradlew artifactorypublish
+            ./gradlew publishArtifactoryPublicationToArtifactoryRepository
 
       - run:
           name: "Publish to Curse"
