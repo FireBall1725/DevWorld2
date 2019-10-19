@@ -62,6 +62,8 @@ jobs:
           command: |
             export CI_VERSION=`cat CI_VERSION`
             echo "Version: $CI_VERSION"
+            git config --global user.email "firemod@fireball1725.ca"
+            git config --global user.name "firemod"
             git tag -a $CI_VERSION -m "v$CI_VERSION"
 
       - run:
