@@ -65,7 +65,7 @@ jobs:
           command: |
             wget https://github.com/git-chglog/git-chglog/releases/download/0.9.1/git-chglog_linux_amd64 -O git-chglog
             chmod +x git-chglog
-            git-chglog -o CHANGELOG.md $(git describe --tags $(git rev-list --tags --max-count=1))
+            ./git-chglog -o CHANGELOG.md $(git describe --tags $(git rev-list --tags --max-count=1))
 
       - run:
           name: "Publish Release"
