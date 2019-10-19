@@ -78,7 +78,7 @@ jobs:
           command: |
             export CI_VERSION=`cat CI_VERSION`
             ./gradlew build
-            ./gradlew githubRelease publishGithubPublicationToGithubRepository # artifactorypublish curseforge
+            ./gradlew githubRelease  # artifactorypublish curseforge # publishGithubPublicationToGithubRepository
 workflows:
   version: 2
   main:
