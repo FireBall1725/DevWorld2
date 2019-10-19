@@ -10,7 +10,7 @@ publishing {
     repositories {
         maven {
             name = "Artifactory"
-            url = uri("https://repo.erins.net/artifactory")
+            url = uri("https://repo.erins.net/FireBall1725/")
             credentials {
                 username = "fireball1725"
                 password = System.getenv("ARTIFACTORY_PASSWORD") ?: "InvalidP@ssword"
