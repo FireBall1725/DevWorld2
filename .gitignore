@@ -16,4 +16,5 @@
 !/gradle.properties
 !/settings.gradle
 !/webresources
+!/.chglog
 .DS_Store
