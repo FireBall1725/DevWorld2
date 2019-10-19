@@ -7,7 +7,7 @@ buildscript {
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
-        classpath group: 'org.jfrog.buildinfo', name: 'build-info-extractor-gradle', version: '4.6.+'
+        classpath group: 'org.jfrog.buildinfo', name: 'build-info-extractor-gradle', version: '4.10.+'
         classpath group: 'gradle.plugin.com.matthewprenger', name: 'CurseGradle', version: '1.4.+'
         classpath group: 'gradle.plugin.com.github.breadmoirai', name: 'github-release', version: '2.2.+'
     }
