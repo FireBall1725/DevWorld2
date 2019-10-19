@@ -22,8 +22,11 @@
  * SOFTWARE.
  */
 
-package com.fireball1725.devworld2.proxy;
+package ca.fireball1725.mods.devworld2.proxy;
 
-public abstract class CommonProxy implements IProxy {
-
+public class ServerProxy extends CommonProxy {
+  @Override
+  public void registerEventHandler() {
+    // Nothing to implement on the server side
+  }
 }

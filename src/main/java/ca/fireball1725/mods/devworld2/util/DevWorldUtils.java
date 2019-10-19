@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.fireball1725.devworld2.util;
+package ca.fireball1725.mods.devworld2.util;
 
 import com.mojang.datafixers.Dynamic;
 import com.mojang.datafixers.types.JsonOps;

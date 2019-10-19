@@ -22,20 +22,14 @@
  * SOFTWARE.
  */
 
-package com.fireball1725.devworld2;
+package ca.fireball1725.mods.devworld2.proxy;
 
-import com.fireball1725.devworld2.proxy.ClientProxy;
-import com.fireball1725.devworld2.proxy.IProxy;
-import com.fireball1725.devworld2.proxy.ServerProxy;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.common.Mod;
+import ca.fireball1725.mods.devworld2.client.events.EventsMainMenu;
+import net.minecraftforge.common.MinecraftForge;
 
-@Mod("devworld2")
-public class DevWorld2 {
-  public static IProxy proxy = DistExecutor.runForDist(() -> () -> new ClientProxy(), () -> () -> new ServerProxy());
-
-  public DevWorld2() {
-    // Register Events
-    proxy.registerEventHandler();
+public class ClientProxy extends CommonProxy {
+  @Override
+  public void registerEventHandler() {
+    MinecraftForge.EVENT_BUS.register(new EventsMainMenu());
   }
 }

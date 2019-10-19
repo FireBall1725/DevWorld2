@@ -91,7 +91,7 @@ jobs:
           name: "Publish to Curse"
           command: |
             export CI_VERSION=`cat CI_VERSION`
-            # ./gradlew curseforge
+            ./gradlew curseforge
 
       - run:
           name: "Publish to GitHub"
