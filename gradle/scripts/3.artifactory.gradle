@@ -6,6 +6,8 @@ def reobfArtifact = artifacts.add('default', reobfFile) {
     type 'jar'
     builtBy 'reobfJar'
 }
+def artifactoryPassword = System.getenv("ARTIFACTORY_PASSWORD") ?: "InvalidP@ssword"
+
 publishing {
     publications {
         artifactory(MavenPublication) {
@@ -13,8 +15,6 @@ publishing {
         }
     }
 }
-
-def artifactoryPassword = System.getenv("ARTIFACTORY_PASSWORD") ?: "InvalidP@ssword"
 
 artifactory {
     publish {

@@ -3,7 +3,6 @@ archivesBaseName = "${project.name}"
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
-// Example for how to get properties into the manifest for reading by the runtime..
 jar {
     manifest {
         attributes([

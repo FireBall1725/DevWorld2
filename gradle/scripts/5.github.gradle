@@ -22,31 +22,3 @@ githubRelease {
     tagName = project.version
     releaseName = "v${project.version}"
 }
-
-def reobfFile = file("$buildDir/reobfJar/output.jar")
-def reobfArtifact = artifacts.add('default', reobfFile) {
-    type 'jar'
-    builtBy 'reobfJar'
-}
-
-//publishing {
-//    repositories {
-//        maven {
-//            name = "Github"
-//            url = uri("https://maven.pkg.github.com/fireball1725/DevWorld2")
-//            credentials {
-//                //findProperty will allow these properties to be absent and still run the build, just won't publish
-//                username = "FireBall1725"
-//                password = System.getenv("GITHUB_TOKEN") ?: "InvalidP@ssword"
-//            }
-//        }
-//    }
-//    publications {
-//        github(MavenPublication) {
-//            artifact reobfArtifact
-//            pom {
-//                url.set("https://github.com/fireball1725/DevWorld2.git")
-//            }
-//        }
-//    }
-//}
