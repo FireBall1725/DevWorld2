@@ -1,5 +1,5 @@
-group = "ca.fireball1725.mods"
-archivesBaseName = "${project.name}"
+group = "ca.fireball1725.mods.${minecraft_version.replace('.', '-')}"
+archivesBaseName = "${project.name}-${minecraft_version}"
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
