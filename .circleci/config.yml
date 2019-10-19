@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: get new version
+          name: "Calculate the next version"
           command: |
             export NEW_VERSION=$(docker run --rm -v $(pwd):/repo codacy/git-version)
             echo $NEW_VERSION > CI_VERSION
@@ -59,6 +59,7 @@ jobs:
       - attach_workspace:
           at: .
       - run:
+          name: "Create Version Tag"
           command: |
             export CI_VERSION=`cat CI_VERSION`
             echo "Version: $CI_VERSION"
@@ -67,6 +68,7 @@ jobs:
             git tag -a $CI_VERSION -m "v$CI_VERSION"
 
       - run:
+          name: "Generate Changelog Markdown"
           command: |
             wget https://github.com/git-chglog/git-chglog/releases/download/0.9.1/git-chglog_linux_amd64 -O git-chglog
             chmod +x git-chglog
@@ -74,11 +76,29 @@ jobs:
             cat CHANGELOG.md
 
       - run:
-          name: "Publish Release"
+          name: "Build"
           command: |
             export CI_VERSION=`cat CI_VERSION`
             ./gradlew build
-            ./gradlew artifactorypublish githubRelease # curseforge # publishGithubPublicationToGithubRepository
+
+      - run:
+          name: "Publish to Artifactory"
+          command: |
+            export CI_VERSION=`cat CI_VERSION`
+            ./gradlew artifactorypublish
+
+      - run:
+          name: "Publish to Curse"
+          command: |
+            export CI_VERSION=`cat CI_VERSION`
+            # ./gradlew curseforge
+
+      - run:
+          name: "Publish to GitHub"
+          command: |
+            export CI_VERSION=`cat CI_VERSION`
+            ./gradlew githubRelease
+
 workflows:
   version: 2
   main:
