@@ -22,12 +22,11 @@
  * SOFTWARE.
  */
 
-package com.fireball1725.devworld2.client.events;
+package ca.fireball1725.mods.devworld2.client.events;
 
-import com.fireball1725.devworld2.util.DevWorldUtils;
+import ca.fireball1725.mods.devworld2.util.DevWorldUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.MainMenuScreen;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
