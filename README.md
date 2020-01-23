@@ -23,7 +23,7 @@ repositories {
 }
 
 dependencies {
-  runtimeOnly fg.deobf(group: 'ca.fireball1725.mods', name: 'DevWorld2-1.14.4', version: '1.0+')
+  runtimeOnly fg.deobf(group: 'ca.fireball1725.mods', name: 'DevWorld2-1.15.2', version: '1.0+')
 }
 ```
 
